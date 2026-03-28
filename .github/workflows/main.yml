@@ -24,9 +24,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade PyQt6 openpyxl xlrd python-docx openai nuitka zstandard
 
-      - name: Install UPX
+      - name: Agree to msstore source agreements
         run: |
-          winget install UPX.UPX -e --silent
+          winget source add --name msstore --arg "https://storeedgefd.dsx.mp.microsoft.com/v9.0" --accept-source-agreements
+
+      - name: Install UPX silently
+        run: |
+          winget install UPX.UPX -e --silent --accept-source-agreements --accept-package-agreements
 
       - name: Build with Nuitka
         run: |
@@ -37,4 +41,3 @@ jobs:
         with:
           name: assignflow1.exe
           path: assignflow1.exe
-
