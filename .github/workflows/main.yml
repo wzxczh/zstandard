@@ -28,9 +28,9 @@ jobs:
         run: |
           winget install UPX.UPX -e --silent --accept-source-agreements --accept-package-agreements
 
-      - name: Build with Nuitka (fixed)
+      - name: Build with Nuitka (final fixed)
         run: |
-          python -m nuitka --onefile --windows-disable-console --windows-icon-from-ico=ico.ico --enable-plugin=upx --lto=yes --no-pyi-files --remove-output --jobs=auto --nofollow-import-to=test,unittest,__pycache__ --prefer-source-code assignflow1.py
+          python -m nuitka --onefile --windows-disable-console --windows-icon-from-ico=ico.ico --enable-plugin=upx --lto=yes --remove-output --jobs=auto --nofollow-import-to=test,unittest,__pycache__ --prefer-source-code assignflow1.py
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
